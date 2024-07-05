@@ -3,6 +3,7 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 from pandas.testing import assert_frame_equal
 import pytest
 import datetime
+import os
 
 @pytest.fixture(scope="session")
 def spark_session():
@@ -11,7 +12,8 @@ def spark_session():
         spark
     except NameError:
         from databricks.connect import DatabricksSession
-        spark = DatabricksSession.builder.getOrCreate()
+        profile = os.environ.get("DATABRICKS_CONFIG_PROFILE")
+        spark = DatabricksSession.builder.serverless().profile(profile).getOrCreate()
 
     yield spark
 

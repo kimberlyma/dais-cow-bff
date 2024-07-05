@@ -8,7 +8,7 @@ targets:
   development:
     default: true
     workspace:
-      host: https://adb-1966697730403610.10.azuredatabricks.net/
+      host: https://e2-dogfood.staging.cloud.databricks.com 
 
 
   qa:
